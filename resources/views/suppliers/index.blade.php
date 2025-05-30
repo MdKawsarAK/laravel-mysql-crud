@@ -15,7 +15,11 @@
             <tr>
                 <td>{{$supplier->id}}</td>
                 <td>{{$supplier->name}}</td>
-                <td>{{$supplier->photo}}</td>
+                <td>
+                    @if($supplier->photo)
+                        <img src="{{ asset('storage/' . $supplier->photo) }}" width="50">
+                    @endif
+                </td>
                 <td>{{$supplier->email}}</td>
                 <td>{{$supplier->phone}}</td>
                 <td>
