@@ -1,6 +1,9 @@
 <h2>{{ $mode === 'edit' ? 'Edit Post' : 'Create Post'}}</h2>
-{{-- errors will be shown here --}}
-
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>
+    </div>
+@endif
 <form action="{{ $mode === 'edit' ? route('posts.update', $post) : route('posts.store') }}" method="POST">
     @csrf
     @if ($mode === 'edit')

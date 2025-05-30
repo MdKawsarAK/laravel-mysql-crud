@@ -1,6 +1,11 @@
 @extends('layouts.main')
 @section('content')
     <h2>{{$mode === 'edit' ? 'Update' : 'Create'}} Company</h2>
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>
+        </div>
+    @endif
     <form action="{{ $mode === 'edit' ? route('companies.update', $company) : route('companies.store') }}" method="POST">
         @csrf
         @if ($mode === 'edit')

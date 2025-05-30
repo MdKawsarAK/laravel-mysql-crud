@@ -2,6 +2,9 @@
 @section('content')
     <h2>All Posts</h2>
     <a href="{{ route('posts.create') }}" class="btn btn-primary mb-2">New Post</a>
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
     <table class="table table-bordered">
         <tr>
             <th>#</th>
