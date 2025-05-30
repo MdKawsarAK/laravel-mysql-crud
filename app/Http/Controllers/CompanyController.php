@@ -13,7 +13,7 @@ class CompanyController extends Controller
     public function index()
     {
         $companies = Company::latest()->paginate('10');
-        return view('company.index', compact('companies'));
+        return view('companies.index', compact('companies'));
     }
 
     /**
@@ -21,7 +21,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('companies.create', ['mode' => 'create']);
     }
 
     /**
@@ -29,7 +29,8 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Company::create($request->all());
+        return redirect(route('companies.index'))->with('success', 'Company created successfully!');
     }
 
     /**
@@ -45,7 +46,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('companies.edit', compact('company'))->with('mode', 'edit');
     }
 
     /**
@@ -53,7 +54,8 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        //
+        $company->update($request->all());
+        return redirect(route('companies.index'))->with('Company updated Successfully');
     }
 
     /**
@@ -61,6 +63,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        $company->delete();
+        return redirect(route('companies.index'))->with('Successfully Deleted!');
     }
 }
